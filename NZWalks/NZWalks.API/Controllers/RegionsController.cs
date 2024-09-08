@@ -122,6 +122,14 @@ namespace NZWalks.API.Controllers
 
         }
 
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public IActionResult Delete([FromRoute] Guid id)
+        {
+
+        }
+
     }
 
 }
