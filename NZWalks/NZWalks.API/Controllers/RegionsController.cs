@@ -79,6 +79,7 @@ namespace NZWalks.API.Controllers
             {
                 //after saving the data into db, I'm againg passing
                 //it to the user through dto
+                Id = regionDomainModel.Id,
                 Name = regionDomainModel.Name,
                 Code = regionDomainModel.Code,
                 RegionImageUrl = regionDomainModel.RegionImageUrl
