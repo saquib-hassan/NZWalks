@@ -20,6 +20,8 @@ namespace NZWalks.API.Controllers
         {
             this.dbContext = dbContext;
         }
+
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
