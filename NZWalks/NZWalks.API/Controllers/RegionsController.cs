@@ -130,6 +130,7 @@ namespace NZWalks.API.Controllers
         {
 
             var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+
             if (regionDomainModel == null)
             {
                 return NotFound();
