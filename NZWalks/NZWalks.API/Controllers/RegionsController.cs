@@ -62,7 +62,7 @@ namespace NZWalks.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]AddRegionRequestDto addRegionRequestDto)
+        public IActionResult Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
 
             var regionDomainModel = new Region
@@ -86,19 +86,19 @@ namespace NZWalks.API.Controllers
                 Code = regionDomainModel.Code,
                 RegionImageUrl = regionDomainModel.RegionImageUrl
             };
-            
-            return CreatedAtAction(nameof(GetById), new {id = regionDto.Id}, regionDto);
+
+            return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
         }
 
 
 
         [HttpPut]
         [Route("{id:guid}")]
-        public IActionResult Update([FromRoute]Guid id, [FromBody]UpdateRegionRequestDto updateRegionRequestDto)
+        public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
             var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
 
-            if(regionDomainModel == null)
+            if (regionDomainModel == null)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace NZWalks.API.Controllers
             regionDomainModel.Code = updateRegionRequestDto.Code;
             regionDomainModel.Name = updateRegionRequestDto.Name;
             regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
-          
+
 
             dbContext.SaveChanges();
 
@@ -129,8 +129,8 @@ namespace NZWalks.API.Controllers
         public IActionResult Delete([FromRoute] Guid id)
         {
 
-            var regionDomainModel = dbContext.Regions.FirstOrDefault(x=>x.Id == id);
-            if(regionDomainModel == null)
+            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            if (regionDomainModel == null)
             {
                 return NotFound();
             }
