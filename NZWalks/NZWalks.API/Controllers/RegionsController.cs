@@ -8,7 +8,7 @@ namespace NZWalks.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class RegionsController : ControllerBase
     {
         private readonly NZWalksDbContext dbContext;
@@ -20,10 +20,10 @@ namespace NZWalks.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-           var regionsDomain = dbContext.Regions.ToList();
-            
-           var regionDto = new List<RegionDto>();
-            foreach(var regionDomain in regionsDomain)
+            var regionsDomain = dbContext.Regions.ToList();
+
+            var regionDto = new List<RegionDto>();
+            foreach (var regionDomain in regionsDomain)
             {
                 regionDto.Add(new RegionDto()
                 {
@@ -39,16 +39,25 @@ namespace NZWalks.API.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IActionResult GetById([FromRoute]Guid id)
+        public IActionResult GetById([FromRoute] Guid id )
         {
-            var regionsDomain = dbContext.Regions.FirstOrDefault(r => r.Id == id);
+           var regionsDomain = dbContext.Regions.FirstOrDefault(r => r.Id == id);
 
-            if(regionsDomain == null)
+            if (regionsDomain == null)
             {
                 return NotFound();
             }
 
-            return Ok(regions);
+            var regionDto = new RegionDto()
+            {
+                Id = regionsDomain.Id,
+                Name = regionsDomain.Name,
+                Code = regionsDomain.Code,
+                RegionImageUrl = regionsDomain.RegionImageUrl,
+            };
+                
+                return Ok(regionDto);
+            }
         }
     }
-}
+
