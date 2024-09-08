@@ -91,21 +91,19 @@ namespace NZWalks.API.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
-        public IActionResult Update([FromRoute]Guid Id, [FromBody]UpdateRegionRequestDto updateRegionRequestDto)
+        public IActionResult Update([FromRoute]Guid id, [FromBody]UpdateRegionRequestDto updateRegionRequestDto)
         {
-            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => Id == x.Id);
+            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
 
             if(regionDomainModel == null)
             {
                 return NotFound();
             }
 
-             regionDomainModel = new Region
-            {
-                Code = updateRegionRequestDto.Code,
-                Name = updateRegionRequestDto.Name,
-                RegionImageUrl = updateRegionRequestDto.RegionImageUrl
-            };
+            regionDomainModel.Code = updateRegionRequestDto.Code;
+            regionDomainModel.Name = updateRegionRequestDto.Name;
+            regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
+          
 
             dbContext.SaveChanges();
 
