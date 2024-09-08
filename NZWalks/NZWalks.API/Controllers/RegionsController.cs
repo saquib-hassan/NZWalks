@@ -78,7 +78,7 @@ namespace NZWalks.API.Controllers
 
             var regionDto = new RegionDto
             {
-                //after saving the data into db, I'm againg passing
+                //after saving the data into db, I'm again passing
                 //it to the user through dto
                 Id = regionDomainModel.Id,
                 Name = regionDomainModel.Name,
@@ -148,7 +148,7 @@ namespace NZWalks.API.Controllers
                 RegionImageUrl = regionDomainModel.RegionImageUrl
             };
 
-            return Ok();
+            return Ok(regionDto);
 
         }
 
