@@ -107,7 +107,18 @@ namespace NZWalks.API.Controllers
                 RegionImageUrl = updateRegionRequestDto.RegionImageUrl
             };
 
-            
+            dbContext.SaveChanges();
+
+            var regionDto = new RegionDto
+            {
+                Id = regionDomainModel.Id,
+                Name = regionDomainModel.Name,
+                Code = regionDomainModel.Code,
+                RegionImageUrl = regionDomainModel.RegionImageUrl
+            };
+
+            return Ok(regionDto);
+
         }
 
     }
