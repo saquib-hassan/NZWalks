@@ -79,7 +79,8 @@ namespace NZWalks.API.Controllers
             var regionDto = new RegionDto
             {
                 //after saving the data into db, I'm again passing
-                //it to the user through dto
+                //it to the user through dto to show it through swagger
+                //specifically which resources are changed
                 Id = regionDomainModel.Id,
                 Name = regionDomainModel.Name,
                 Code = regionDomainModel.Code,
@@ -137,7 +138,7 @@ namespace NZWalks.API.Controllers
             dbContext.Regions.Remove(regionDomainModel);
             dbContext.SaveChanges();
 
-            //option if we want to return the deleted region back
+            //optional -  if we want to return the deleted region back
             //pass the dtos again
 
             var regionDto = new RegionDto
