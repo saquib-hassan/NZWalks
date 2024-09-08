@@ -48,7 +48,7 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
-            var regionDto = new RegionDto()
+            var regionDto = new RegionDto
             {
                 Id = regionsDomain.Id,
                 Name = regionsDomain.Name,
