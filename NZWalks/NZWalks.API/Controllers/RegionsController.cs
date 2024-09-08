@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Core.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
@@ -88,6 +89,26 @@ namespace NZWalks.API.Controllers
             return CreatedAtAction(nameof(GetById), new {id = regionDto.Id}, regionDto);
         }
 
+        [HttpPut]
+        [Route("{id:guid}")]
+        public IActionResult Update([FromRoute]Guid Id, [FromBody]UpdateRegionRequestDto updateRegionRequestDto)
+        {
+            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => Id == x.Id);
+
+            if(regionDomainModel == null)
+            {
+                return NotFound();
+            }
+
+             regionDomainModel = new Region
+            {
+                Code = updateRegionRequestDto.Code,
+                Name = updateRegionRequestDto.Name,
+                RegionImageUrl = updateRegionRequestDto.RegionImageUrl
+            };
+
+            
+        }
 
     }
 
