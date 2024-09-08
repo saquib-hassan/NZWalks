@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace NZWalks.API.Controllers
 {
@@ -60,7 +61,7 @@ namespace NZWalks.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(AddRegionRequestDto addRegionRequestDto)
+        public IActionResult Create([FromBody]AddRegionRequestDto addRegionRequestDto)
         {
 
             var regionDomainModel = new Region
@@ -72,6 +73,15 @@ namespace NZWalks.API.Controllers
 
             dbContext.Regions.Add(regionDomainModel);
             dbContext.SaveChanges();
+
+            var regionDto = new RegionDto
+            {
+                Name = regionDomainModel.Name,
+                Code = regionDomainModel.Code,
+                RegionImageUrl = regionDomainModel.RegionImageUrl
+            };
+
+            return CreatedAtAction(nameof(GetById), new {id = regionDto.Id}, regionDto);
         }
 
 
