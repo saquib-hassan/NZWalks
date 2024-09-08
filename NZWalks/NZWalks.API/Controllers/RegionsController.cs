@@ -89,13 +89,6 @@ namespace NZWalks.API.Controllers
         }
 
 
-
-
-
-
-
-
-
     }
 
 }
