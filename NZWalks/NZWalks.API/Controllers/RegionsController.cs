@@ -102,6 +102,7 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
+            //we're updating existing elements, not creating one.
             regionDomainModel.Code = updateRegionRequestDto.Code;
             regionDomainModel.Name = updateRegionRequestDto.Name;
             regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
