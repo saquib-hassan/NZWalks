@@ -134,6 +134,10 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
+            dbContext.Remove(regionDomainModel);
+            dbContext.SaveChanges();
+            return Ok();
+
         }
 
     }
