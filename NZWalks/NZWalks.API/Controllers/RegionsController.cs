@@ -89,6 +89,8 @@ namespace NZWalks.API.Controllers
             return CreatedAtAction(nameof(GetById), new {id = regionDto.Id}, regionDto);
         }
 
+
+
         [HttpPut]
         [Route("{id:guid}")]
         public IActionResult Update([FromRoute]Guid id, [FromBody]UpdateRegionRequestDto updateRegionRequestDto)
