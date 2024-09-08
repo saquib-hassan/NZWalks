@@ -134,8 +134,20 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
-            dbContext.Remove(regionDomainModel);
+            dbContext.Regions.Remove(regionDomainModel);
             dbContext.SaveChanges();
+
+            //option if we want to return the deleted region back
+            //pass the dtos again
+
+            var regionDto = new RegionDto
+            {
+                Id = regionDomainModel.Id,
+                Name = regionDomainModel.Name,
+                Code = regionDomainModel.Code,
+                RegionImageUrl = regionDomainModel.RegionImageUrl
+            };
+
             return Ok();
 
         }
