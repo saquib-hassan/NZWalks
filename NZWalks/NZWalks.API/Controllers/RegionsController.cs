@@ -128,6 +128,12 @@ namespace NZWalks.API.Controllers
         public IActionResult Delete([FromRoute] Guid id)
         {
 
+            var regionDomainModel = dbContext.Regions.FirstOrDefault(x=>x.Id == id);
+            if(regionDomainModel == null)
+            {
+                return NotFound();
+            }
+
         }
 
     }
