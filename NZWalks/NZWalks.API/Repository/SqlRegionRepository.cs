@@ -12,6 +12,12 @@ namespace NZWalks.API.Repository
         {
             this.dbContext = dbContext;
         }
+
+        public Task<Region> CreateAsync(Region region)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Region>> GetAllAsync()
         {
            return await dbContext.Regions.ToListAsync();
