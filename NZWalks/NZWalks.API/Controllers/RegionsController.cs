@@ -61,15 +61,16 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
-            var regionDto = new RegionDto
-            {
-                Id = regionsDomain.Id,
-                Name = regionsDomain.Name,
-                Code = regionsDomain.Code,
-                RegionImageUrl = regionsDomain.RegionImageUrl,
-            };
+            //var regionDto = new RegionDto
+            //{
+            //    Id = regionsDomain.Id,
+            //    Name = regionsDomain.Name,
+            //    Code = regionsDomain.Code,
+            //    RegionImageUrl = regionsDomain.RegionImageUrl,
+            //};
+            ;
 
-            return Ok(regionDto);
+            return Ok(mapper.Map<RegionDto>(regionsDomain));
         }
 
 
