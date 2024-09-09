@@ -13,8 +13,8 @@ namespace NZWalks.API.Repository
         }
         public async Task<Walk> CreateAsync(Walk walk)
         {
-            dbContext.Walks.Add(walk);
-            dbContext.SaveChanges();
+            await dbContext.Walks.AddAsync(walk);
+            await dbContext.SaveChangesAsync();
             return walk;
         }
     }
