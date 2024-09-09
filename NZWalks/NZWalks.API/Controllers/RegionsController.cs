@@ -155,15 +155,15 @@ namespace NZWalks.API.Controllers
             //optional -  if we want to return the deleted region back
             //pass the dtos again
 
-            var regionDto = new RegionDto
-            {
-                Id = regionDomainModel.Id,
-                Name = regionDomainModel.Name,
-                Code = regionDomainModel.Code,
-                RegionImageUrl = regionDomainModel.RegionImageUrl
-            };
+            //var regionDto = new RegionDto
+            //{
+            //    Id = regionDomainModel.Id,
+            //    Name = regionDomainModel.Name,
+            //    Code = regionDomainModel.Code,
+            //    RegionImageUrl = regionDomainModel.RegionImageUrl
+            //};
 
-            return Ok(regionDto);
+            return Ok(mapper.Map<RegionDto>(regionDomainModel));
 
         }
 
