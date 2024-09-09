@@ -7,5 +7,7 @@ namespace NZWalks.API.Controllers
     [ApiController]
     public class WalkController : ControllerBase
     {
+        [HttpPost]
+
     }
 }
