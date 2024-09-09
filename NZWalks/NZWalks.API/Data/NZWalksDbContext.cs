@@ -19,7 +19,7 @@ namespace NZWalks.API.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // seed data for difficulties
+            // Seed data for Difficulties
             var difficulties = new List<Difficulty>()
             {
                 new Difficulty
