@@ -29,5 +29,11 @@ namespace NZWalks.API.Controllers
             return Ok(mapper.Map<WalkDto>(walkDomainModel));
 
         }
+
+        [HttpGet]
+        public Task<List<IActionResult>> GetALl()
+        {
+
+        }
     }
 }
