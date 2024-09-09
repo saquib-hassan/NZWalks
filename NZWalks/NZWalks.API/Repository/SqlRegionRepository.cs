@@ -1,12 +1,20 @@
-﻿using NZWalks.API.Models.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using NZWalks.API.Data;
+using NZWalks.API.Models.Domain;
 
 namespace NZWalks.API.Repository
 {
     public class SqlRegionRepository : IRegionRepository
     {
-        public Task<Region> GetAllAsync()
+        private readonly NZWalksDbContext dbContext;
+
+        public SqlRegionRepository(NZWalksDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
+        }
+        public async Task<Region> GetAllAsync()
+        {
+            return await dbContext.Regions.ToListAsync();
         }
     }
 }
