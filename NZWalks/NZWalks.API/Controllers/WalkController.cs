@@ -20,14 +20,13 @@ namespace NZWalks.API.Controllers
             this.mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult>Create(AddWalkRequestRDto walkRequestRDto)
+        public async Task<IActionResult> Create(AddWalkRequestRDto walkRequestRDto)
         {
             var walkDomainModel = mapper.Map<Walk>(walkRequestRDto);
             await walkRepository.CreateAsync(walkDomainModel);
 
-           // mapper.Map<AddWalkRequestRDto>(walkDomainModel);
-           mapper.Map<>
-            return Ok();
+            // mapper.Map<AddWalkRequestRDto>(walkDomainModel);
+            return Ok(mapper.Map<WalkDto>(walkDomainModel));
 
         }
     }
