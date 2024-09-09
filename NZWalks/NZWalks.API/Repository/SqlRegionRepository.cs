@@ -17,9 +17,9 @@ namespace NZWalks.API.Repository
            return await dbContext.Regions.ToListAsync();
         }
 
-        public Task<List<Region>> GetByIdAsync(int id)
+        public async Task<Region?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

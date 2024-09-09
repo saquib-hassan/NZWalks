@@ -6,6 +6,6 @@ namespace NZWalks.API.Repository
     {
          Task<List<Region>> GetAllAsync();
 
-         Task<List<Region>> GetByIdAsync(Guid id);
+         Task<Region?> GetByIdAsync(Guid id);
     }
 }
