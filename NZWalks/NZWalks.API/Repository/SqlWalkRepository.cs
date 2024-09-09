@@ -1,12 +1,21 @@
-﻿using NZWalks.API.Models.Domain;
+﻿using NZWalks.API.Data;
+using NZWalks.API.Models.Domain;
 
 namespace NZWalks.API.Repository
 {
     public class SqlWalkRepository : IWalkRepository
     {
-        public Task<Walk> CreateAsync(Walk walk)
+        private readonly NZWalksDbContext dbContext;
+
+        public SqlWalkRepository(NZWalksDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
+        }
+        public async Task<Walk> CreateAsync(Walk walk)
+        {
+            dbContext.Walks.Add(walk);
+            dbContext.SaveChanges();
+            return walk;
         }
     }
 }
