@@ -37,6 +37,19 @@ namespace NZWalks.API.Data
                     Name="Hard"
                 }
             };
+
+            modelBuilder.Entity<Difficulty>().HasData(difficulties);
+
+            var regions = new List<Region>()
+            {
+                new Region
+                {
+                    Id=,
+                    Code=,
+                    Name=,
+                    RegionImageUrl=
+                }
+            }
         }
 
         
