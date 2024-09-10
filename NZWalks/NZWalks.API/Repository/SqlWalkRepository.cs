@@ -69,7 +69,7 @@ namespace NZWalks.API.Repository
 
             var skipWalks = (pageNumber - 1) * pageSize;
 
-            return await walks.ToListAsync();
+            return await walks.Skip(skipWalks).Take(pageSize) .ToListAsync();
             //return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
         }
 
