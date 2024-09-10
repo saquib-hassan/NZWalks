@@ -54,11 +54,16 @@ namespace NZWalks.API.Repository
 
             if (string.IsNullOrWhiteSpace(sortBy) == false)
             {
-                if (sortBy.("Name", StringComparison.OrdinalIgnoreCase))
+                if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
-
+                    walks = isAscending ? walks.OrderBy(w => w.Name) : walks.OrderByDescending(w=>w.Name) ;
+                }
+                else if(sortBy.Equals("Length",StringComparison.OrdinalIgnoreCase))
+                    {
+                    walks = isAscending ? walks.OrderBy(w => w.LengthInKm) : walks.OrderByDescending(w => w.LengthInKm);
                 }
             }
+            
 
             return await walks.ToListAsync();
             //return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
