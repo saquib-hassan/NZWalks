@@ -35,7 +35,7 @@ namespace NZWalks.API.Repository
                 FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Walk> UpdateAsync(Guid id, Walk walk)
+        public async Task<Walk?> UpdateAsync(Guid id, Walk walk)
         {
 
             var existingWalk = await dbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
@@ -46,6 +46,8 @@ namespace NZWalks.API.Repository
 
             existingWalk.Name = walk.Name;
             existingWalk.WalkImageUrl = walk.WalkImageUrl;
+            existingWalk.LengthInKm = walk.LengthInKm;
+            existingWalk.Description = walk.Description;
             existingWalk.RegionId = walk.RegionId;
             existingWalk.DifficultyId = walk.DifficultyId;
 
