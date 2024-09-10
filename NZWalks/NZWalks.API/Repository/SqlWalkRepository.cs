@@ -57,19 +57,19 @@ namespace NZWalks.API.Repository
             {
                 if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
-                    walks = isAscending ? walks.OrderBy(w => w.Name) : walks.OrderByDescending(w=>w.Name) ;
+                    walks = isAscending ? walks.OrderBy(w => w.Name) : walks.OrderByDescending(w => w.Name);
                 }
-                else if(sortBy.Equals("Length",StringComparison.OrdinalIgnoreCase))
-                    {
+                else if (sortBy.Equals("Length", StringComparison.OrdinalIgnoreCase))
+                {
                     walks = isAscending ? walks.OrderBy(w => w.LengthInKm) : walks.OrderByDescending(w => w.LengthInKm);
                 }
             }
-            
+
             // Pagination
 
             var skipWalks = (pageNumber - 1) * pageSize;
 
-            return await walks.Skip(skipWalks).Take(pageSize) .ToListAsync();
+            return await walks.Skip(skipWalks).Take(pageSize).ToListAsync();
             //return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
         }
 
