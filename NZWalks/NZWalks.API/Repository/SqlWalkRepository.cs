@@ -20,6 +20,12 @@ namespace NZWalks.API.Repository
             return walk;
         }
 
+        public async Task<Walk?> DeleteAsync(Guid id)
+        {
+            
+            var exsistingWalk = dbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<List<Walk>> GetAllAsync()
         {
             //await dbContext.Walks.ToListAsync();
