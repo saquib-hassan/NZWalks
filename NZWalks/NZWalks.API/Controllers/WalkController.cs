@@ -42,7 +42,7 @@ namespace NZWalks.API.Controllers
         public async Task<IActionResult> GetALl([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
             [FromQuery]string? sortBy,[FromQuery] bool? isAscending,int pageNumber = 1, int pageSize = 1000 )
         {
-            var walkDomainModel = await walkRepository.GetAllAsync(filterOn,filterQuery,sortBy,isAscending?? true);
+            var walkDomainModel = await walkRepository.GetAllAsync(filterOn,filterQuery,sortBy,isAscending?? true,pageNumber,pageSize);
 
             return Ok(mapper.Map<List<WalkDto>>(walkDomainModel));
         }
