@@ -22,16 +22,16 @@ namespace NZWalks.API.Repository
 
         public async Task<Walk?> DeleteAsync(Guid id)
         {
-            
+
             var existingWalk = await dbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
-            if(existingWalk == null )
+            if (existingWalk == null)
             {
                 return null;
             }
             dbContext.Walks.Remove(existingWalk);
             await dbContext.SaveChangesAsync();
             return existingWalk;
-            
+
         }
 
         public async Task<List<Walk>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
@@ -41,8 +41,12 @@ namespace NZWalks.API.Repository
 
             var walks = dbContext.Walks.Include("Difficulty").Include("Region");
             //filtering
-            if(string.IsNullOrWhiteSpace(filterOn)==false && string.IsNullOrWhiteSpace(filterQuery)==false)
+            if (string.IsNullOrWhiteSpace(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false)
             {
+                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    walks = walks.Where(w => w.Name.Contains(filterQuery));
+                }
 
             }
 
