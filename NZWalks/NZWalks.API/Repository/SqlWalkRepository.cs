@@ -39,7 +39,7 @@ namespace NZWalks.API.Repository
             //await dbContext.Walks.ToListAsync();
             //Navigation Property
 
-            var walks = dbContext.Walks.Include("Difficulty").Include("Region");
+            var walks = dbContext.Walks.Include("Difficulty").Include("Region").AsQueryable();
             //filtering
             if (string.IsNullOrWhiteSpace(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false)
             {
@@ -48,6 +48,16 @@ namespace NZWalks.API.Repository
                     walks = walks.Where(w => w.Name.Contains(filterQuery));
                 }
 
+            }
+
+            // Sorting
+
+            if (string.IsNullOrWhiteSpace(sortBy) == false)
+            {
+                if (sortBy.("Name", StringComparison.OrdinalIgnoreCase))
+                {
+
+                }
             }
 
             return await walks.ToListAsync();
