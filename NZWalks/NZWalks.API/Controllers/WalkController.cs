@@ -71,7 +71,14 @@ namespace NZWalks.API.Controllers
 
         public async Task<IActionResult> Delete(Guid id)
         {
+            var walkDomainModel = await walkRepository.DeleteAsync(id);
 
+            if( walkDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
         }
 
     }
