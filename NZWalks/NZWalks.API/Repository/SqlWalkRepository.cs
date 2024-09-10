@@ -34,7 +34,7 @@ namespace NZWalks.API.Repository
 
         }
 
-        public async Task<List<Walk>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
+        public async Task<List<Walk>> GetAllAsync(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool? isAscending = true)
         {
             //await dbContext.Walks.ToListAsync();
             //Navigation Property
