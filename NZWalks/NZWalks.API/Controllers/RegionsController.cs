@@ -77,32 +77,36 @@ namespace NZWalks.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
+            if(ModelState.IsValid)
+            {
+                //var regionDomainModel = new Region
+                //{
+                //    //I'm taking the data from dto and passing it to model
+                //    Name = addRegionRequestDto.Name,
+                //    Code = addRegionRequestDto.Code,
+                //    RegionImageUrl = addRegionRequestDto.RegionImageUrl
+                //};
 
-            //var regionDomainModel = new Region
-            //{
-            //    //I'm taking the data from dto and passing it to model
-            //    Name = addRegionRequestDto.Name,
-            //    Code = addRegionRequestDto.Code,
-            //    RegionImageUrl = addRegionRequestDto.RegionImageUrl
-            //};
+                var regionDomainModel = mapper.Map<Region>(addRegionRequestDto);
 
-            var regionDomainModel = mapper.Map<Region>(addRegionRequestDto);
+                regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
 
-            regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
+                //var regionDto = new RegionDto
+                //{
+                //    //after saving the data into db, I'm again passing
+                //    //it to the user through dto to show it through swagger
+                //    //specifically which resources are changed
+                //    Id = regionDomainModel.Id,
+                //    Name = regionDomainModel.Name,
+                //    Code = regionDomainModel.Code,
+                //    RegionImageUrl = regionDomainModel.RegionImageUrl
+                //};
+                var regionDto = mapper.Map<RegionDto>(regionDomainModel);
 
-            //var regionDto = new RegionDto
-            //{
-            //    //after saving the data into db, I'm again passing
-            //    //it to the user through dto to show it through swagger
-            //    //specifically which resources are changed
-            //    Id = regionDomainModel.Id,
-            //    Name = regionDomainModel.Name,
-            //    Code = regionDomainModel.Code,
-            //    RegionImageUrl = regionDomainModel.RegionImageUrl
-            //};
-            var regionDto = mapper.Map<RegionDto>(regionDomainModel);
-
-            return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
+                return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
+            }
+            return BadRequest();
+            
         }
 
 
