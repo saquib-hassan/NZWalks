@@ -34,7 +34,7 @@ namespace NZWalks.API.Repository
             
         }
 
-        public async Task<List<Walk>> GetAllAsync()
+        public async Task<List<Walk>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
         {
             //await dbContext.Walks.ToListAsync();
             //Navigation Property
