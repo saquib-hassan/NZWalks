@@ -105,7 +105,11 @@ namespace NZWalks.API.Controllers
 
                 return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
             }
-            return BadRequest();
+            else
+            {
+                return BadRequest(ModelState);
+            }
+           
             
         }
 
