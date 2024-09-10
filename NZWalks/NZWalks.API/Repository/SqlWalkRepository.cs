@@ -43,6 +43,10 @@ namespace NZWalks.API.Repository
             {
                 return null;
             }
+            existingWalk.Id = id;
+            existingWalk.Name = walk.Name;
+            existingWalk.WalkImageUrl = walk.WalkImageUrl;
+
             dbContext.Walks.AddAsync(existingWalk);
             await dbContext.SaveChangesAsync();
             return existingWalk;
