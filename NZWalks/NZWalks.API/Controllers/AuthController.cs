@@ -45,5 +45,13 @@ namespace NZWalks.API.Controllers
             return BadRequest("Something went wrong!");
 
         }
+
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login()
+        {
+
+        }
     }
 }
