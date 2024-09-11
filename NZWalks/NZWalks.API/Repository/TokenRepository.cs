@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using System.Text;
 
 namespace NZWalks.API.Repository
 {
@@ -14,6 +16,9 @@ namespace NZWalks.API.Repository
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
+
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jwt:Key"));
         }
     }
 }
