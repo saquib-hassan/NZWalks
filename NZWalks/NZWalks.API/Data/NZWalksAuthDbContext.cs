@@ -1,6 +1,8 @@
-﻿namespace NZWalks.API.Data
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+namespace NZWalks.API.Data
 {
-    public class NZWalksAuthDbContext
+    public class NZWalksAuthDbContext : IdentityDbContext
     {
 
     }
