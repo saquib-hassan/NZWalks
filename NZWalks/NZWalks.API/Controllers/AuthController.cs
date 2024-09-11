@@ -7,5 +7,12 @@ namespace NZWalks.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+
+        [HttpPost]
+        [Route("Register")]
+        public async Task<IActionResult> Create()
+        {
+
+        }
     }
 }
