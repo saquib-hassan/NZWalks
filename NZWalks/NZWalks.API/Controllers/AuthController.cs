@@ -10,7 +10,7 @@ namespace NZWalks.API.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Register()
         {
 
         }
