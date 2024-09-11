@@ -7,6 +7,12 @@ namespace NZWalks.API.Repository
 {
     public class TokenRepository : ITokenRepository
     {
+        private readonly IConfiguration configuration;
+
+        public TokenRepository(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
         public string CreateJWTToken(IdentityUser user, List<string> roles)
         {
             var claims = new List<Claim>();
@@ -18,7 +24,7 @@ namespace NZWalks.API.Repository
             }
 
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jwt:Key"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration));
         }
     }
 }
