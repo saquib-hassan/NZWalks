@@ -32,9 +32,9 @@ namespace NZWalks.API.Controllers
             {
                 if(registerRequestDto.Roles != null && registerRequestDto.Roles.Any())
                 {
-
+                    identityResult = await userManager.AddToRolesAsync(identityUser, registerRequestDto.Roles);
                 }
-                await userManager.AddToRolesAsync(identityUser,registerRequestDto.Roles);
+                
             }
 
         }
