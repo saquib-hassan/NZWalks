@@ -30,6 +30,10 @@ namespace NZWalks.API.Controllers
 
             if (identityResult.Succeeded) 
             {
+                if(registerRequestDto.Roles != null && registerRequestDto.Roles.Any())
+                {
+
+                }
                 await userManager.AddToRolesAsync(identityUser,registerRequestDto.Roles);
             }
 
