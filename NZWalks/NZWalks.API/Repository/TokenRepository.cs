@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace NZWalks.API.Repository
@@ -24,7 +25,9 @@ namespace NZWalks.API.Repository
             }
 
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
+
+            var credentials = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
         }
     }
 }
