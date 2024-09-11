@@ -53,7 +53,10 @@ namespace NZWalks.API.Controllers
         {
 
             var user = await userManager.FindByEmailAsync(loginRequestDto.UserName);
-
+            if (user != null)
+            {
+                var checkPassword = userManager.CheckPasswordAsync(user, loginRequestDto.Password)
+            }
         }
     }
 }
