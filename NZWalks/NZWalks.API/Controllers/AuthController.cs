@@ -42,7 +42,7 @@ namespace NZWalks.API.Controllers
 
             }
 
-            return BadRequest();
+            return BadRequest("Something went wrong!");
 
         }
     }
