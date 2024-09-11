@@ -60,6 +60,8 @@ namespace NZWalks.API.Controllers
                 if(checkPasswordResult)
                 {
                     // jwt token
+
+                    return Ok();
                 }
             }
 
