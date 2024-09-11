@@ -55,8 +55,10 @@ namespace NZWalks.API.Controllers
             var user = await userManager.FindByEmailAsync(loginRequestDto.UserName);
             if (user != null)
             {
-                var checkPassword = userManager.CheckPasswordAsync(user, loginRequestDto.Password)
+                var checkPassword = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
             }
+            
+            return BadRequest("Username or Password was incorrect!");
         }
     }
 }
