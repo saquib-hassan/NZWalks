@@ -25,6 +25,24 @@ builder.Services.AddSwaggerGen(options =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = JwtBearerDefaults.AuthenticationScheme
     });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+             new OpenApiSecurityScheme
+            {
+                 Reference = new OpenApiReference
+                 {
+                      Type = ReferenceType.SecurityScheme,
+                 Id = JwtBearerDefaults.AuthenticationScheme
+                 },
+                 Scheme = "Oauth2",
+                 Name = JwtBearerDefaults.AuthenticationScheme,
+                 In = ParameterLocation.Header
+
+               
+            }
+        }
+    } )
 });
 
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
