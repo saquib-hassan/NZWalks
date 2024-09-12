@@ -39,10 +39,10 @@ builder.Services.AddSwaggerGen(options =>
                  Name = JwtBearerDefaults.AuthenticationScheme,
                  In = ParameterLocation.Header
 
-               
-            }
+            },
+             new List<string>()
         }
-    } )
+    });
 });
 
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
