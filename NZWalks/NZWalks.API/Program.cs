@@ -38,7 +38,6 @@ builder.Services.AddSwaggerGen(options =>
                  Scheme = "Oauth2",
                  Name = JwtBearerDefaults.AuthenticationScheme,
                  In = ParameterLocation.Header
-
             },
              new List<string>()
         }
