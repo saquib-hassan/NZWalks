@@ -6,6 +6,7 @@ using NZWalks.API.Data;
 using NZWalks.API.Mapping;
 using NZWalks.API.Repository;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title="NZ Walks API", Version="v1" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title="NZ Walks API", Version="v1" });
+    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+    {
+        Name="Authorization",
+        In= ParameterLocation.Header
+    })
 });
 
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
