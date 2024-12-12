@@ -55,5 +55,13 @@ namespace NZWalks.API.Controllers
             
             return Ok(regionDtos);
         }
+
+        [HttpPost]
+        public IActionResult Create(RegionDTO regionDTO)
+        {
+            
+        }
+
+        
     }
 }
