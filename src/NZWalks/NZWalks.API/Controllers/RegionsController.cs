@@ -120,6 +120,11 @@ namespace NZWalks.API.Controllers
         {
             var region = dbContext.Regions.FirstOrDefault(x=>x.Id == id);
 
+            if( region == null)
+            {
+                return NotFound();
+            }
+
             dbContext.Regions.Remove(region);
             dbContext.SaveChanges();
 
