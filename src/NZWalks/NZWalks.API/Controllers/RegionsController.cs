@@ -122,7 +122,16 @@ namespace NZWalks.API.Controllers
 
             dbContext.Regions.Remove(region);
             dbContext.SaveChanges();
-            return Ok();
+
+            var regionDto = new RegionDTO()
+            {
+                Id = region.Id,
+                Name = region.Name,
+                Code = region.Code,
+                RegionImageUrl = region.RegionImageUrl,
+            };
+            return Ok(regionDto);
         }
     }
 }
+//b1cd4ea1-b3e1-4645-71c2-08dd1ad558c3
