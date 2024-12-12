@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Data;
 
 namespace NZWalks.API.Controllers
@@ -14,10 +13,24 @@ namespace NZWalks.API.Controllers
         {
             this.dbContext = dbContext;
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
+            var regions = dbContext.Regions.ToList();
+            return Ok(regions);
+        }
 
+        [HttpGet("{id:Guid}")]
+
+        public IActionResult GetByID(Guid id)
+        {
+            var regions = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            if (regions == null)
+            {
+                return NotFound();
+            }
+            return Ok(regions);
         }
     }
 }
