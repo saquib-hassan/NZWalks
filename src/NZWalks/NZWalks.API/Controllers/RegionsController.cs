@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NZWalks.API.Data;
 
 namespace NZWalks.API.Controllers
 {
@@ -7,6 +8,16 @@ namespace NZWalks.API.Controllers
     [ApiController]
     public class RegionsController : ControllerBase
     {
+        private readonly NZWalksDbContext dbContext;
 
+        public RegionsController(NZWalksDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+
+        }
     }
 }
