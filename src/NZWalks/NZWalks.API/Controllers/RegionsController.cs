@@ -59,7 +59,7 @@ namespace NZWalks.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] AddRegionRequestDTO addRegionRequestDTO )
+        public async Task<IActionResult> Create([FromBody] AddRegionRequestDTO addRegionRequestDTO )
         {
             var regionDomainModel = new Region
             {
@@ -69,8 +69,8 @@ namespace NZWalks.API.Controllers
 
             };
 
-            dbContext.Regions.Add(regionDomainModel);
-            dbContext.SaveChanges();
+            await dbContext.Regions.AddAsync(regionDomainModel);
+            await dbContext.SaveChangesAsync();
 
             var regionDtos = new RegionDTO()
             {
