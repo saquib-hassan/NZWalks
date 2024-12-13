@@ -119,14 +119,14 @@ namespace NZWalks.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var region = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id));
+            var region = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
 
             if( region == null)
             {
                 return NotFound();
             }
 
-            await dbContext.Regions.Remove(region);
+            dbContext.Regions.Remove(region);
             await dbContext.SaveChangesAsync();
 
             var regionDto = new RegionDTO()
@@ -141,3 +141,4 @@ namespace NZWalks.API.Controllers
     }
 }
 //b1cd4ea1-b3e1-4645-71c2-08dd1ad558c3
+//wireless
