@@ -93,18 +93,20 @@ namespace NZWalks.API.Controllers
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
 
-           var regionDomainModel =  await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
-            if(regionDomainModel is null)
+            var regionDomainModel = new Region
+            {
+                Code = updateRegionRequestDto.Code,
+                Name = updateRegionRequestDto.Name,
+                RegionImageUrl = updateRegionRequestDto.RegionImageUrl,
+            };
+            regionDomainModel = await regionRepository.UpdateAsync(id, regionDomainModel);
+           if (regionDomainModel == null)
             {
                 return NotFound();
             }
 
-            regionDomainModel.Code = updateRegionRequestDto.Code;
-            regionDomainModel.Name = updateRegionRequestDto.Name;
-            regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
-
             //dbContext.Regions.Add(regionDomainModel);
-            await dbContext.SaveChangesAsync();
+            
 
             var regionDtos = new RegionDTO()
             {

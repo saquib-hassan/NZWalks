@@ -37,9 +37,22 @@ namespace NZWalks.API.Repositories
             return await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Region?> UpdateAsync(Guid id, Region region)
+        public async Task<Region?> UpdateAsync(Guid id, Region region)
         {
-            throw new NotImplementedException();
+            var existingRegion = await dbContext.Regions.FirstOrDefaultAsync(x=>x.Id == id);
+            if (existingRegion == null)
+            {
+                return null;
+            }
+
+            existingRegion.Code = region.Code;
+            existingRegion.Name = region.Name;
+               existingRegion.RegionImageUrl = region.RegionImageUrl;
+
+
+           // await dbContext.Regions.AddAsync(existingRegion);
+            await dbContext.SaveChangesAsync();
+            return existingRegion;
         }
     }
 }
