@@ -4,7 +4,7 @@ namespace NZWalks.API.Repositories
 {
     public interface IRegionRepository
     {
-        Task<Region> GetAllAsync();
+        Task <List<Region>> GetAllAsync();
 
         Task<Region?> GetByIdAsync(Guid id);
 

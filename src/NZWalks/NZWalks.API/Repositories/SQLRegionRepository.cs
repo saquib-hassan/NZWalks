@@ -1,4 +1,5 @@
-﻿using NZWalks.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
 
 namespace NZWalks.API.Repositories
@@ -21,9 +22,9 @@ namespace NZWalks.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Region> GetAllAsync()
+        public async Task<List<Region>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.Regions.ToListAsync();
         }
 
         public Task<Region?> GetByIdAsync(Guid id)
