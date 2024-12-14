@@ -124,15 +124,12 @@ namespace NZWalks.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var region = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+            var region = await regionRepository.DeleteAsync(id);
 
             if( region == null)
             {
                 return NotFound();
             }
-
-            dbContext.Regions.Remove(region);
-            await dbContext.SaveChangesAsync();
 
             var regionDto = new RegionDTO()
             {
