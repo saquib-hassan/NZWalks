@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
@@ -13,11 +14,13 @@ namespace NZWalks.API.Controllers
     {
         private readonly NZWalksDbContext dbContext;
         private readonly IRegionRepository regionRepository;
+        private readonly IMapper mapper;
 
-        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository)
+        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.regionRepository = regionRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -26,19 +29,20 @@ namespace NZWalks.API.Controllers
             //var regionsDomain = await dbContext.Regions.ToListAsync();
             var regionsDomain = await regionRepository.GetAllAsync();
 
-            var regionDtos = new List<RegionDTO>();
-            foreach(var regionDomain in regionsDomain)
-            {
-                regionDtos.Add(new RegionDTO()
-                {
-                    Id = regionDomain.Id,
-                    Name = regionDomain.Name,
-                    Code = regionDomain.Code,
-                    RegionImageUrl = regionDomain.RegionImageUrl,
-                });
+            //var regionDtos = new List<RegionDTO>();
+            //foreach (var regionDomain in regionsDomain)
+            //{
+            //    regionDtos.Add(new RegionDTO()
+            //    {
+            //        Id = regionDomain.Id,
+            //        Name = regionDomain.Name,
+            //        Code = regionDomain.Code,
+            //        RegionImageUrl = regionDomain.RegionImageUrl,
+            //    });
 
-            }
-            return Ok(regionDtos);
+            //}
+
+            return Ok(mapper.Map<List<RegionDTO>>(regionsDomain));
         }
 
         [HttpGet]
