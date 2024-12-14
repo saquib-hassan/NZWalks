@@ -45,7 +45,7 @@ namespace NZWalks.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetByID([FromRoute]Guid id)
         {
-            var regionDomain = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+            var regionDomain = await regionRepository.GetByIdAsync(id);
             if (regionDomain == null)
             {
                 return NotFound();

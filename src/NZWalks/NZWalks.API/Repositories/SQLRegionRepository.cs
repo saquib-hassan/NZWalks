@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
 
@@ -17,9 +18,11 @@ namespace NZWalks.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Region?> DeleteAsync(Guid id)
+        public async Task<Region?> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            // return await dbContext.Regions.FirstOrDefaultAsync(x=>x.Id ==id);
+            throw(new NotImplementedException());
+          
         }
 
         public async Task<List<Region>> GetAllAsync()
@@ -27,9 +30,9 @@ namespace NZWalks.API.Repositories
             return await dbContext.Regions.ToListAsync();
         }
 
-        public Task<Region?> GetByIdAsync(Guid id)
+        public async Task<Region?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<Region?> UpdateAsync(Guid id, Region region)
