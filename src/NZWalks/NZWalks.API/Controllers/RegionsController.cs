@@ -73,8 +73,7 @@ namespace NZWalks.API.Controllers
 
             };
 
-            await dbContext.Regions.AddAsync(regionDomainModel);
-            await dbContext.SaveChangesAsync();
+            regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
 
             var regionDtos = new RegionDTO()
             {
