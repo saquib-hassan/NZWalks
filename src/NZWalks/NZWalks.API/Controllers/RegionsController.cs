@@ -55,37 +55,41 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
-            var regionDtos = new RegionDTO()
-            {
-                Id = regionDomain.Id,
-                Name = regionDomain.Name,
-                Code = regionDomain.Code,
-                RegionImageUrl = regionDomain.RegionImageUrl,
-            };
+            //var regionDtos = new RegionDTO()
+            //{
+            //    Id = regionDomain.Id,
+            //    Name = regionDomain.Name,
+            //    Code = regionDomain.Code,
+            //    RegionImageUrl = regionDomain.RegionImageUrl,
+            //};
             
-            return Ok(regionDtos);
+            return Ok(mapper.Map<RegionDTO>(regionDomain));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddRegionRequestDTO addRegionRequestDTO )
+        public async Task<IActionResult> Create([FromBody] AddRegionRequestDTO addRegionRequestDTO)
         {
-            var regionDomainModel = new Region
-            {
-                Name = addRegionRequestDTO.Name,
-                Code = addRegionRequestDTO.Code,
-                RegionImageUrl = addRegionRequestDTO.RegionImageUrl,
+            //var regionDomainModel = new Region();
+            //{
+            //    Name = addRegionRequestDTO.Name,
+            //    Code = addRegionRequestDTO.Code,
+            //    RegionImageUrl = addRegionRequestDTO.RegionImageUrl,
 
-            };
+            //};
+
+            var regionDomainModel = mapper.Map<Region>(addRegionRequestDTO);
 
             regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
 
-            var regionDtos = new RegionDTO()
-            {
-                Id = regionDomainModel.Id,
-                Name = regionDomainModel.Name,
-                Code = regionDomainModel.Code,
-                RegionImageUrl = regionDomainModel.RegionImageUrl,
-            };
+            //var regionDtos = new RegionDTO()
+            //{
+            //    Id = regionDomainModel.Id,
+            //    Name = regionDomainModel.Name,
+            //    Code = regionDomainModel.Code,
+            //    RegionImageUrl = regionDomainModel.RegionImageUrl,
+            //};
+
+            var regionDtos= mapper.Map<RegionDTO>(regionDomainModel);
 
             return CreatedAtAction(nameof(GetByID), new {id = regionDtos.Id}, regionDtos);
 
