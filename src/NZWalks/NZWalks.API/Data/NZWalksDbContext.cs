@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+
 using NZWalks.API.Models.Domain;
 
 namespace NZWalks.API.Data
@@ -16,5 +15,9 @@ namespace NZWalks.API.Data
         public DbSet<Region> Regions { get; set; }
         public DbSet<Walk> Walks { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
