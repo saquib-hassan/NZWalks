@@ -39,6 +39,35 @@ namespace NZWalks.API.Data
             };
 
             modelBuilder.Entity<Difficulty>().HasData(difficulties);
+
+            var regions = new List<Region>()
+            {
+                new Region
+                {
+                    Id = Guid.Parse("3176866f-c7ac-412e-b676-07ae4e1bb97a"),
+                    Name = "Auckland",
+                    Code = "AKL",
+                    RegionImageUrl ="some-image-from-Auckland.jpg"
+                },
+                new Region
+                {
+                    Id = Guid.Parse("07d44bb6-cf74-4b1c-99af-9472e30272b5"),
+                    Name = "Welington",
+                    Code = "WLT",
+                    RegionImageUrl ="some-image-from-Welington.jpg"
+
+                },
+                new Region
+                {
+                    Id = Guid.Parse("0ebdfe73-77bb-4a85-b798-c3230f77f6d4"),
+                    Name = "Bellingham",
+                    Code = "BLH",
+                    RegionImageUrl ="some-image-from-Bellingham.jpg"
+
+                }
+            };
+
+            modelBuilder.Entity<Region>().HasData(regions);
         }
     }
 }
