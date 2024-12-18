@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NZWalks.API.CustomValidationFilter;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
 using NZWalks.API.Repositories;
@@ -63,11 +64,11 @@ namespace NZWalks.API.Controllers
         }
 
         [HttpPost]
-        
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDTO addRegionRequestDTO)
         {
-            if(ModelState.IsValid)
-            {
+            
+          
                 //var regionDomainModel = new Region();
                 //{
                 //    Name = addRegionRequestDTO.Name,
@@ -91,14 +92,13 @@ namespace NZWalks.API.Controllers
                 var regionDtos = mapper.Map<RegionDTO>(regionDomainModel);
 
                 return CreatedAtAction(nameof(GetByID), new { id = regionDtos.Id }, regionDtos);
-            }
-            return BadRequest();
            
 
         }
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
 
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
