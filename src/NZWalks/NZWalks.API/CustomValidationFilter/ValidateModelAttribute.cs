@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace NZWalks.API
+namespace NZWalks.API.CustomValidationFilter
 {
-    public class CustomValidationFilter : ActionFilterAttribute
+    public class ValidateModelAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if(context.ModelState.IsValid == false)
+            if (context.ModelState.IsValid == false)
             {
                 context.Result = new BadRequestResult();
             }
