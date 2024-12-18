@@ -23,12 +23,24 @@ namespace NZWalks.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]AddWalkRequestDto addWalkRequestDto)
         {
+            //dto to domain
             var walkDomainModel = mapper.Map<Walk>(addWalkRequestDto); 
             await walkRepository.CreateAsync(walkDomainModel);
-
+            //domain to dto
             var walkDto = mapper.Map<WalkDto>(walkDomainModel);
             return Ok(walkDto);
             
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> GetAll()
+        {
+            var walkDomainModel = await walkRepository.GetAllAsync();
+            //domain to dto
+            //var walkDto = mapper.Map<List<WalkDto>>(walkDomainModel);
+
+            return Ok(mapper.Map<List<WalkDto>>(walkDomainModel));
         }
     }
 }
