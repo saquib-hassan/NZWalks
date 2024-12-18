@@ -63,31 +63,37 @@ namespace NZWalks.API.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDTO addRegionRequestDTO)
         {
-            //var regionDomainModel = new Region();
-            //{
-            //    Name = addRegionRequestDTO.Name,
-            //    Code = addRegionRequestDTO.Code,
-            //    RegionImageUrl = addRegionRequestDTO.RegionImageUrl,
+            if(ModelState.IsValid)
+            {
+                //var regionDomainModel = new Region();
+                //{
+                //    Name = addRegionRequestDTO.Name,
+                //    Code = addRegionRequestDTO.Code,
+                //    RegionImageUrl = addRegionRequestDTO.RegionImageUrl,
 
-            //};
+                //};
 
-            var regionDomainModel = mapper.Map<Region>(addRegionRequestDTO);
+                var regionDomainModel = mapper.Map<Region>(addRegionRequestDTO);
 
-            regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
+                regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
 
-            //var regionDtos = new RegionDTO()
-            //{
-            //    Id = regionDomainModel.Id,
-            //    Name = regionDomainModel.Name,
-            //    Code = regionDomainModel.Code,
-            //    RegionImageUrl = regionDomainModel.RegionImageUrl,
-            //};
+                //var regionDtos = new RegionDTO()
+                //{
+                //    Id = regionDomainModel.Id,
+                //    Name = regionDomainModel.Name,
+                //    Code = regionDomainModel.Code,
+                //    RegionImageUrl = regionDomainModel.RegionImageUrl,
+                //};
 
-            var regionDtos= mapper.Map<RegionDTO>(regionDomainModel);
+                var regionDtos = mapper.Map<RegionDTO>(regionDomainModel);
 
-            return CreatedAtAction(nameof(GetByID), new {id = regionDtos.Id}, regionDtos);
+                return CreatedAtAction(nameof(GetByID), new { id = regionDtos.Id }, regionDtos);
+            }
+            return BadRequest();
+           
 
         }
 
