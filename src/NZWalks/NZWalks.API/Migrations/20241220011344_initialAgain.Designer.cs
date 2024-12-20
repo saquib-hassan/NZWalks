@@ -12,8 +12,8 @@ using NZWalks.API.Data;
 namespace NZWalks.API.Migrations
 {
     [DbContext(typeof(NZWalksDbContext))]
-    [Migration("20241215134438_SeedToDiffAndReg")]
-    partial class SeedToDiffAndReg
+    [Migration("20241220011344_initialAgain")]
+    partial class initialAgain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,7 +115,7 @@ namespace NZWalks.API.Migrations
                     b.Property<Guid>("DifficultyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("LegthInKm")
+                    b.Property<double>("LengthInKm")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")

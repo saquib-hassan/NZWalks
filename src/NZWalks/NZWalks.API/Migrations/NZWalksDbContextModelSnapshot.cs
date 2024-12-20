@@ -112,7 +112,7 @@ namespace NZWalks.API.Migrations
                     b.Property<Guid>("DifficultyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("LegthInKm")
+                    b.Property<double>("LengthInKm")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
