@@ -33,8 +33,6 @@ namespace NZWalks.API.Data
                     Name = "Writer",
                     NormalizedName = "Writer".ToUpper()
                 }
-
-                
             };
 
             builder.Entity<IdentityRole>().HasData(roles);
